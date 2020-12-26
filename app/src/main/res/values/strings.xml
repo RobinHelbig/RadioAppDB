@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">App13</string>
+    <string name="developed_by_robin_helbig_18_11_2020">Developed by Robin Helbig, 26.12.2020</string>
+    <string name="radio_starten">Radio starten</string>
+    <string name="radio_stoppen">Radio stoppen</string>
+    <string name="radio_website_anzeigen">Radio Website anzeigen</string>
+    <string name="app_beenden">App beenden</string>
+    <string name="name_1live">1Live</string>
+    <string name="name_1livediggi">1Live Diggi</string>
+    <string name="name_wdr2">WDR2</string>
+    <string name="name_wdr4">WDR4</string>
+    <string name="radio_1live"><![CDATA[https://wdr-edge-101d-dus-dtag-cdn.cast.addradio.de/wdr/1live/live/mp3/128/stream.mp3?ar-key=BcG5DcAgEATAYiwRIvY-9gKKwSdTggNX75l34Wu1KB3IDo7O9iy4SpAAFH6pVYzct5Ql_XBIGI_uWZE2PX4&_art=dj0yJmlwPTk0LjMxLjgxLjk0JmlkPWljc2N4bC1sZXFmZXdkbmImdD0xNjA1MTkyNTQwJnM9Nzg2NmYyOWMjYjg3NWM3MjEzYmU3OTk0MTI1MTY0ZjdhOTZmOWQ1ZTc]]></string>
+    <string name="radio_1livediggi"><![CDATA[https://wdr-edge-301c-dus-ts-cdn.cast.addradio.de/wdr/1live/diggi/mp3/128/stream.mp3?ar-key=BcHBEcAgCATAYjLj0-FAAR8Woygl5JHqs_tOfCWmcwVGhVP1cie6sLrzgIo9mRFXdlMcIlskcF6mTTJO2u4_&_art=dj0yJmlwPTk0LjMxLjgxLjk0JmlkPWljc2N4bC1jM2VzZnVkbmImdD0xNjA1MTkzNzY5JnM9Nzg2NmYyOWMjZGVmNGRlZWIyN2RkZGU4MzcwNzE3ZTFhNjE4M2UzZjQ]]></string>
+    <string name="radio_wdr2">https://wdr-edge-101c-dus-dtag-cdn.cast.addradio.de/wdr/wdr2/rheinland/mp3/128/stream.mp3?_art=dj0yJmlwPTk0LjMxLjgxLjk0JmlkPWljc2N4bC1xc2x3amplbmImdD0xNjA1MTkzMDk0JnM9Nzg2NmYyOWMjZTZhNmJmODBiYzhmMmEwMzI1MDQ4MDI1NjBlYWUyNGE</string>
+    <string name="radio_wdr4">https://wdr-edge-301c-dus-ts-cdn.cast.addradio.de/wdr/wdr4/live/mp3/128/stream.mp3?_art=dj0yJmlwPTk0LjMxLjgxLjk0JmlkPWljc2N4bC14dHhudG5lbmImdD0xNjA1MTkzMTA3JnM9Nzg2NmYyOWMjYjg1NTllODgzNDU3NjU2YTU5NWNjMDhhNjkzZWMyZGE</string>
+    <string name="website_1live">https://www1.wdr.de/radio/1live/index.html</string>
+    <string name="website_1livediggi">https://www1.wdr.de/radio/1live-diggi/index.html</string>
+    <string name="website_wdr2">https://www1.wdr.de/radio/wdr2/index.html</string>
+    <string name="website_wdr4">https://www1.wdr.de/radio/wdr4/index.html</string>
+    <string name="logo_1live"><![CDATA[https://api.my–radios.com/images/thumb.php?countryCode=DE&name=28302–65166.png&size=200]]></string>
+    <string name="logo_1livediggi">https://mytuner.global.ssl.fastly.net/media/tvos_radios/QRcXKeeHwx.jpg</string>
+    <string name="logo_wdr2">https://img.ardmediathek.de/standard/00/42/92/13/76/-295433861/1x1/448?mandant=ard</string>
+    <string name="logo_wdr4">https://mytuner.global.ssl.fastly.net/media/tvos_radios/pPjD9ajR4U.png</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="weiterspielen">Weiterspielen</string>
+</resources>
