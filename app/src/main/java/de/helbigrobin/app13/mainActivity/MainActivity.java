@@ -25,7 +25,6 @@ import de.helbigrobin.app13.RadioStationActivity;
 import de.helbigrobin.app13.database.AppDatabase;
 import de.helbigrobin.app13.database.RadioStation;
 import de.helbigrobin.app13.database.RadioStationDao;
-import de.helbigrobin.app13.mainActivity.fragments.AddRadioStation;
 import de.helbigrobin.app13.mainActivity.fragments.Configuration;
 import de.helbigrobin.app13.mainActivity.fragments.ConfigureRadioStations;
 import de.helbigrobin.app13.mainActivity.fragments.RadioStationList;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     showFragment(Configuration.class);
                     break;
                 case R.id.addRadioStation:
-                    showFragment(AddRadioStation.class);
+//                    showFragment(AddRadioStation.class);
                     break;
                 default:
                     return true;

@@ -41,7 +41,7 @@ public class RadioStationList extends Fragment {
         lv.setAdapter(arrayAdapter);
         lv.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), RadioStationActivity.class);
-            intent.putExtra("radioStationUid", radioStations.get(position).uid);
+            intent.putExtra("radioStation", radioStations.get(position));
             startActivity(intent);
         });
         registerForContextMenu(lv);

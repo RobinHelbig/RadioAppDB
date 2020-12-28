@@ -61,28 +61,21 @@ public class RadioService extends Service implements IRadioService {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        int radioStationUid = intent.getIntExtra("radioStationUid", -1);
-        if (radioStationUid >= 0){
-            //Asynchron RadioStation aus Datenbank abfragen
-            AsyncTask.execute(() -> {
-                this.radioStation = AppDatabase.getInstance(this).radioStationDao().getById(radioStationUid);
+        RadioStation radioStation = (RadioStation) intent.getSerializableExtra("radioStation");
+        if (radioStation != null) {
+            this.radioStation = radioStation;
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
 
-                //Synchron im MainThread weiterarbeiten
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+            String source = this.radioStation.streamUrl;
 
-                    String source = this.radioStation.streamUrl;
+            try {
+                mediaPlayer.setDataSource(source);
+            } catch(Exception e){
+                Log.i("statusInfo", "Error: " + e.getMessage());
+            }
 
-                    try {
-                        mediaPlayer.setDataSource(source);
-                    } catch(Exception e){
-                        Log.i("statusInfo", "Error: " + e.getMessage());
-                    }
-
-                    startRadio();
-                });
-            });
+            startRadio();
         }
         return binder;
     }

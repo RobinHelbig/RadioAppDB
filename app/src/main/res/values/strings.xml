@@ -27,4 +27,6 @@
     <string name="weiterspielen">Weiterspielen</string>
     <string name="Open">Offen</string>
     <string name="Close">Zu</string>
+    <string name="titleEdit">Station #id# bearbeiten</string>
+    <string name="saveChanges">Änderungen speichern</string>
 </resources>

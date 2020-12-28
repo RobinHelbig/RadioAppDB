@@ -28,6 +28,7 @@ import java.util.List;
 
 import de.helbigrobin.app13.R;
 import de.helbigrobin.app13.RadioStationActivity;
+import de.helbigrobin.app13.RadioStationEditActivity;
 import de.helbigrobin.app13.database.AppDatabase;
 import de.helbigrobin.app13.database.RadioStation;
 import de.helbigrobin.app13.database.RadioStationDao;
@@ -48,6 +49,27 @@ public class ConfigureRadioStations extends Fragment {
         setupRadioStationList();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                RadioStation updatedStationData = (RadioStation) intent.getSerializableExtra("radioStation");
+                if (updatedStationData != null){
+                    for (RadioStation element : radioStations){
+                        if (element.uid == updatedStationData.uid){
+                            element.name = updatedStationData.name;
+                            element.streamUrl = updatedStationData.streamUrl;
+                            element.websiteUrl = updatedStationData.websiteUrl;
+                            element.logoUrl = updatedStationData.logoUrl;
+                        }
+                    }
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo){
@@ -61,9 +83,22 @@ public class ConfigureRadioStations extends Fragment {
         RadioStation station = radioStations.get(position);
 
         if(item.getItemId() == R.id.edit) {
-
+            Intent intent = new Intent(getActivity().getApplicationContext(), RadioStationEditActivity.class);
+            intent.putExtra("radioStation", station);
+            startActivityForResult(intent, 1);
         } else if(item.getItemId() == R.id.delete){
+            AsyncTask.execute(() -> {
+                //DB Update
+                AppDatabase db = AppDatabase.getInstance(getContext());
+                RadioStationDao radioStationDao = db.radioStationDao();
+                radioStationDao.deleteRadioStation(station);
 
+                //Synchron im MainThread UI updaten
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    radioStations.remove(station);
+                    arrayAdapter.notifyDataSetChanged();
+                });
+            });
         } else {
             return super.onContextItemSelected(item);
         }
@@ -118,14 +153,8 @@ public class ConfigureRadioStations extends Fragment {
                     radioStationDao.updateRadioStation(currentStation);
 
                     //Synchron im MainThread UI updaten
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        //Neuen Favoritenstatus in der UI setzen
-                        if(currentStation.favourite){
-                            imageView.setImageResource(R.mipmap.favorite_yes);
-                        } else {
-                            imageView.setImageResource(R.mipmap.favorite_no);
-                        }
-                    });
+                    //Neuen Favoritenstatus in der UI setzen
+                    new Handler(Looper.getMainLooper()).post(this::notifyDataSetChanged);
                 });
             });
 

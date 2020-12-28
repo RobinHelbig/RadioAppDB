@@ -37,10 +37,10 @@ public class RadioStationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int radioStationUid = intent.getIntExtra("radioStationUid", -1);
-        if (radioStationUid >= 0){
+        RadioStation radioStation = (RadioStation) intent.getSerializableExtra("radioStation");
+        if (radioStation != null){
             Intent serviceIntent = new Intent(this, RadioService.class);
-            serviceIntent.putExtra("radioStationUid", radioStationUid);
+            serviceIntent.putExtra("radioStation", radioStation);
             startService(serviceIntent);
             con = new RadioServiceConnection();
             bindService(serviceIntent, con, Context.BIND_AUTO_CREATE);
@@ -57,7 +57,7 @@ public class RadioStationActivity extends AppCompatActivity {
             stopButton = findViewById(R.id.stopButton);
             webView = findViewById(R.id.webview);
 
-            showRadioWebsite(radioStationUid);
+            showRadioWebsite(radioStation);
         }
     }
 
@@ -108,20 +108,11 @@ public class RadioStationActivity extends AppCompatActivity {
     }
 
 
-    private void showRadioWebsite(int radioStationUid){
-        Log.i("statusInfo", "Website " + radioStationUid);
-
-        //Asynchron RadioStation aus Datenbank abfragen
-        AsyncTask.execute(() -> {
-            RadioStation radioStation = AppDatabase.getInstance(this).radioStationDao().getById(radioStationUid);
-
-            //Synchron im MainThread weiterarbeiten
-            runOnUiThread(() -> {
-                webView.setWebViewClient(new WebViewClient());
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl(radioStation.websiteUrl);
-            });
-        });
+    private void showRadioWebsite(RadioStation radioStation){
+        Log.i("statusInfo", "Website " + radioStation.uid);
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(radioStation.websiteUrl);
     }
 
     class RadioServiceConnection implements ServiceConnection {
