@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/radioStations"
+        android:title="Radiosender"/>
+    <item android:id="@+id/configureRadioStations"
+        android:title="Radiosender editieren"/>
+    <item android:id="@+id/configuration"
+        android:title="Allgemeine Einstellungen"/>
+    <item android:id="@+id/addRadioStation"
+        android:title="Radiosender hinzufügen"/>
+
+</menu>

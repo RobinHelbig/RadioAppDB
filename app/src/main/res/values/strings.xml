@@ -25,4 +25,6 @@
     <string name="stop">Stop</string>
     <string name="pause">Pause</string>
     <string name="weiterspielen">Weiterspielen</string>
+    <string name="Open">Offen</string>
+    <string name="Close">Zu</string>
 </resources>
