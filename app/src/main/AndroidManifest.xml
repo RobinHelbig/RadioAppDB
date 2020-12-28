@@ -29,11 +29,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="de.helbigrobin.app13.RadioStationEditActivity">
+        <activity
+            android:name="de.helbigrobin.app13.RadioStationEditActivity"
+            android:configChanges="orientation|screenSize"
+            >
         </activity>
-        <activity android:name="de.helbigrobin.app13.RadioStationAddActivity">
+        <activity
+            android:name="de.helbigrobin.app13.RadioStationAddActivity"
+            android:configChanges="orientation|screenSize"
+            >
         </activity>
-        <service android:name="de.helbigrobin.app13.RadioService">
+        <service
+            android:name="de.helbigrobin.app13.RadioService"
+            android:configChanges="orientation|screenSize"
+            >
         </service>
     </application>
 

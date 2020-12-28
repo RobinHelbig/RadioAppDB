@@ -25,6 +25,7 @@ public class Configuration extends Fragment {
 
     private void setupLayout(){
         String playLastStationKey = getString(R.string.sharedPreferences_key_playLastStation);
+        String playLastStationUIdKey = getString(R.string.sharedPreferences_key_playLastStation_uid);
         String onlyShowFavouritesKey = getString(R.string.sharedPreferences_key_onlyShowFavourites);
         SwitchCompat playLastStationSwitch = getView().findViewById(R.id.playLastStationSwitch);
         SwitchCompat onlyShowFavouritesSwitch = getView().findViewById(R.id.onlyShowFavouritesSwitch);
@@ -40,6 +41,11 @@ public class Configuration extends Fragment {
 
         playLastStationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             prefs.edit().putBoolean(playLastStationKey, isChecked).apply();
+
+            /*Wenn die Option zum direkten Anzeigen der letzten Station beim Appstart akiviert oder deaktiviert wird, lösche ich die letzte offene Station, da der User glaube ich nicht erwartet,
+            dass eine Station geöffnet wird, die vor dem Treffen dieser Einstellung mal offen war.
+            */
+            prefs.edit().remove(playLastStationUIdKey).apply();
         });
 
         onlyShowFavouritesSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {

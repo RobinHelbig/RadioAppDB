@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +23,9 @@ import de.helbigrobin.app13.database.RadioStationDao;
 import de.helbigrobin.app13.mainActivity.fragments.RadioStationList;
 
 public class RadioStationEditActivity extends AppCompatActivity {
+    EditText name, stream, website, logo;
+    Button confirmButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +42,11 @@ public class RadioStationEditActivity extends AppCompatActivity {
         setContentView(R.layout.radiostation_form);
 
         TextView title = findViewById(R.id.title_textview);
-        Button confirmButton = findViewById(R.id.confirm_button);
-        EditText name = findViewById(R.id.nameEdit);
-        EditText stream = findViewById(R.id.streamEdit);
-        EditText website = findViewById(R.id.websiteEdit);
-        EditText logo = findViewById(R.id.logoEdit);
+        confirmButton = findViewById(R.id.confirm_button);
+        name = findViewById(R.id.nameEdit);
+        stream = findViewById(R.id.streamEdit);
+        website = findViewById(R.id.websiteEdit);
+        logo = findViewById(R.id.logoEdit);
 
         title.setText(getString(R.string.titleEdit).replace("#id#", ""+station.uid));
         confirmButton.setText(R.string.saveChanges);
@@ -49,6 +54,12 @@ public class RadioStationEditActivity extends AppCompatActivity {
         stream.setText(station.streamUrl);
         website.setText(station.websiteUrl);
         logo.setText(station.logoUrl);
+
+        TextChangeListener textChangeListener = new TextChangeListener();
+        name.addTextChangedListener(textChangeListener);
+        stream.addTextChangedListener(textChangeListener);
+        website.addTextChangedListener(textChangeListener);
+        logo.addTextChangedListener(textChangeListener);
 
         confirmButton.setOnClickListener((view -> {
             station.name = name.getText().toString();
@@ -69,5 +80,19 @@ public class RadioStationEditActivity extends AppCompatActivity {
                 runOnUiThread(this::finish);
             });
         }));
+    }
+
+    private class TextChangeListener implements TextWatcher {
+        public void afterTextChanged(Editable s) {
+            //Jedes Feld der RadioStation muss einen Wert haben, um sie abspeichern zu können
+            confirmButton.setEnabled(!name.getText().toString().isEmpty() &&
+                    !stream.getText().toString().isEmpty() &&
+                    !website.getText().toString().isEmpty() &&
+                    !logo.getText().toString().isEmpty());
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
     }
 }
