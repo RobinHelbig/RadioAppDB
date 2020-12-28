@@ -70,10 +70,4 @@ public class RadioStationEditActivity extends AppCompatActivity {
             });
         }));
     }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-
-    }
 }

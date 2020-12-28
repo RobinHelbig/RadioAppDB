@@ -1,6 +1,8 @@
 package de.helbigrobin.app13.mainActivity.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,14 +36,34 @@ public class RadioStationList extends Fragment {
     }
 
     private void setupRadioStationList(){
+        String onlyShowFavouritesKey = getString(R.string.sharedPreferences_key_onlyShowFavourites);
+        String playLastStationUIdKey = getString(R.string.sharedPreferences_key_playLastStation_uid);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences(
+                "de.helbigrobin.app13", Context.MODE_PRIVATE);
+
+        boolean onlyShowFavourites = prefs.getBoolean(onlyShowFavouritesKey, false);
+
+        List<RadioStation> shownRadioStations = new ArrayList<>();
+        for(RadioStation station : radioStations){
+            if(station.favourite || !onlyShowFavourites){ //Wenn Sender Favorit oder Einstellung onlyShowFavourites = false
+                shownRadioStations.add(station);
+            }
+        }
+
         ListView lv = getView().findViewById(R.id.radio_menu);
         arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
                 android.R.layout.simple_list_item_1,
-                radioStations);
+                shownRadioStations);
         lv.setAdapter(arrayAdapter);
         lv.setOnItemClickListener((parent, view, position, id) -> {
+            RadioStation selectedStation = shownRadioStations.get(position);
+
+            //Wenn eine RadioStation geöffnet wird, wird die uid gespeichert, um sie beim Appstart direkt öffnen zu können
+            prefs.edit().putLong(playLastStationUIdKey, selectedStation.uid).apply();
+
             Intent intent = new Intent(getActivity().getApplicationContext(), RadioStationActivity.class);
-            intent.putExtra("radioStation", radioStations.get(position));
+            intent.putExtra("radioStation", selectedStation);
             startActivity(intent);
         });
         registerForContextMenu(lv);

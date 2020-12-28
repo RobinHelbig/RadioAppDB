@@ -29,4 +29,12 @@
     <string name="Close">Zu</string>
     <string name="titleEdit">Station #id# bearbeiten</string>
     <string name="saveChanges">Änderungen speichern</string>
+    <string name="titleAdd">RadioStation hinzufügen</string>
+    <string name="configureradiostations">ConfigureRadioStations</string>
+    <string name="configuration">Configuration</string>
+    <string name="play_last_station_on_start">Play last station on start</string>
+    <string name="only_display_favourite_stations">Only display favourite stations</string>
+    <string name="sharedPreferences_key_playLastStation">playLastStation</string>
+    <string name="sharedPreferences_key_playLastStation_uid">playLastStationUid</string>
+    <string name="sharedPreferences_key_onlyShowFavourites">onlyShowFavourites</string>
 </resources>

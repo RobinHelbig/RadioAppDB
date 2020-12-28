@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -81,6 +82,12 @@ public class RadioStationActivity extends AppCompatActivity {
         if (webView.canGoBack()) { //Wenn geht in Webview zurück navigieren
             webView.goBack();
         } else {
+            String playLastStationUIdKey = getString(R.string.sharedPreferences_key_playLastStation_uid);
+            SharedPreferences prefs = getSharedPreferences(
+                    "de.helbigrobin.app13", Context.MODE_PRIVATE);
+
+            //Uid der geöffneten RadioStation wird wieder entfernt, da die Station bewusst geschlossen wurde und somit nicht automatisch beim Appstart geöffnet werden sollte
+            prefs.edit().remove(playLastStationUIdKey).apply();
             super.onBackPressed(); //Ansonsten Action verlassen
         }
     }

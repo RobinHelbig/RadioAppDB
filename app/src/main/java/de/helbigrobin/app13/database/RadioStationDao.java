@@ -14,10 +14,10 @@ public interface RadioStationDao {
     List<RadioStation> getAll();
 
     @Query("SELECT uid, name, stream_url, website_url, logo_url, favourite FROM radiostation WHERE uid = :uid")
-    RadioStation getById(Integer uid);
+    RadioStation getById(Long uid);
 
     @Insert
-    void insertRadioStation(RadioStation radioStation);
+    long insertRadioStation(RadioStation radioStation);
 
     @Update
     void updateRadioStation(RadioStation radioStation);
