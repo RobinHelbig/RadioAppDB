@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;

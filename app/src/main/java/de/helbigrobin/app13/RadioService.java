@@ -7,16 +7,11 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.PowerManager;
 import android.util.Log;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import androidx.annotation.Nullable;
@@ -25,7 +20,6 @@ import androidx.core.app.NotificationCompat;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
-import de.helbigrobin.app13.database.AppDatabase;
 import de.helbigrobin.app13.database.RadioStation;
 
 public class RadioService extends Service implements IRadioService {

@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -19,9 +18,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.helbigrobin.app13.database.AppDatabase;
 import de.helbigrobin.app13.database.RadioStation;
-import de.helbigrobin.app13.database.RadioStationDao;
 
 public class RadioStationActivity extends AppCompatActivity {
     public IRadioService radioService;

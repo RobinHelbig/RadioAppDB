@@ -2,9 +2,7 @@ package de.helbigrobin.app13;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
@@ -13,9 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.helbigrobin.app13.database.AppDatabase;
 import de.helbigrobin.app13.database.RadioStation;
-import de.helbigrobin.app13.database.RadioStationDao;
 
 public class RadioStationAddActivity extends AppCompatActivity {
     EditText name, stream, website, logo;
