@@ -49,6 +49,9 @@ public class ConfigureRadioStations extends Fragment {
         setupRadioStationList();
     }
 
+    /*
+    Verändertes RadioStation Objekt wird hier nach dem Bearbeiten zurückgegeben, um die Daten in der Liste der Radiostationen zu aktualisieren
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);

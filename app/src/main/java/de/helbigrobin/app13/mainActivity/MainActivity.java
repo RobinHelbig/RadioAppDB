@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /*
+    Neues RadioStation Objekt wird hier nach dem Erstellen zurückgegeben, um die Daten in die Datenbank und in die Liste der Radiostationen hinzuzufügen
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -133,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        /*
+        Die "Radiosender anhören", "Radiosender editieren" und "Allgemeine Einstellungen" Layouts werden als Fragmente geladen, da so das Burger Menu nicht jedes mal neu erstellt werden muss.
+        "Radiosender hinzufügen" ist eine eigene Activity, da ich dabei kein Burger Menu anzeigen wollte.
+         */
         navigationView = findViewById(R.id.nv);
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
